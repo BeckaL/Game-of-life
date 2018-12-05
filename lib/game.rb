@@ -10,12 +10,11 @@ class Game
   end
 
   def surviving_live_cells
-    survivors = @live_cells.select do |living_cell|
+    return @live_cells.select do |living_cell|
       cell_neighbours = find_neighbours(living_cell)
       alive_nbours = (cell_neighbours - @dead_cells).length
       living_cell if (MIN_SURV_THRESH...MAX_SURV_THRESH).include?(alive_nbours)
     end
-  survivors
   end
 
   private

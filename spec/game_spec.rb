@@ -7,4 +7,14 @@ describe 'Game' do
     expect(sparse_game.surviving_live_cells).to eq []
   end
 
+  it 'a live cell survives if two or three of its neighbours are live' do
+    medium_game = Game.new([[1,1], [1,2], [1,0]], [[0, -1], [0, 0], [0, 1], [0, 2], [0, 3], [1, -1], [1, 3], [2, -1], [2, 0], [2, 1], [2, 2], [2, 3]])
+    expect(medium_game.surviving_live_cells).to include [1,1]
+  end
+
+  it 'a live cell dies if more than three of its neighbours are live' do
+    busy_game = Game.new([[1,1], [0,1], [1,0], [1,2], [0,0]], [[-1, -1], [-1, 0], [-1, 1], [-1, 2], [0, -1], [0, 2], [0, 3], [1, -1], [1, 3], [2, -1], [2, 0], [2, 1], [2, 2], [2, 3]])
+    expect(busy_game.surviving_live_cells).not_to include [1,1]
+  end
+
 end
