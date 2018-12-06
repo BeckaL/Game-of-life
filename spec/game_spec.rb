@@ -25,4 +25,14 @@ describe 'Game' do
     expect(game.generated_dead_cells).to include [1,1]
   end
 
+  it 'a dead cell stays dead if less than three of its neighbours are live' do
+    game = Game.new([[1,0], [1,1]], [[0, -1], [0, 0], [0, 1], [0, 2], [1, -1], [1, 2], [2, -1], [2, 0], [2, 1], [2, 2]])
+    expect(game.generated_dead_cells).to eq []
+  end
+
+  it 'a dead cell stays dead if more than three of its neighbours are live' do
+    game = Game.new([[0,0], [0,1], [0,2], [1,0]], [[-1, -1], [-1, 0], [-1, 1], [-1, 2], [-1, 3], [0, -1], [0, 3], [1, -1], [1, 1], [1, 2], [1, 3], [2, -1], [2, 0], [2, 1]])
+    expect(game.generated_dead_cells).not_to include [1,1]
+  end
+
 end
