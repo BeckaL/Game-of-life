@@ -1,8 +1,7 @@
 require_relative 'neighbours_module'
 class Game
   TOTAL_NEIGHBOURS = 8
-  MIN_SURV_THRESH = 2
-  MAX_SURV_THRESH = 3
+  SURVIVAL_THRESHOLD = (2..3)
   GENERATION_THRESH = 3
 
   def initialize(live_cells, dead_cells)
@@ -27,7 +26,7 @@ class Game
 
   def generation_or_survival_rule(cell, alive_neighbours, alive_now)
     if alive_now
-      cell if (MIN_SURV_THRESH..MAX_SURV_THRESH).cover?(alive_neighbours)
+      cell if SURVIVAL_THRESHOLD.cover?(alive_neighbours)
     else
       cell if GENERATION_THRESH == alive_neighbours
     end
