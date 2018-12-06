@@ -2,14 +2,18 @@ require './lib/game'
 describe 'Game' do
   context 'surviving_live_cells' do
     let(:live_cell) { [1, 1] }
-    let(:cell_neighbours) { [[0, 0], [0, 1], [0, 2],
+    let(:cell_neighbours) {
+                            [[0, 0], [0, 1], [0, 2],
                              [1, 0], [1, 2],
-                             [2, 0], [2, 1], [2, 2]] }
+                             [2, 0], [2, 1], [2, 2]]
+                           }
     let(:two_by_two_sqaure) { [[0, 0], [0, 1], [1, 0], [1, 1]] }
-    let(:two_by_two_sqaure_neighbours) { [[-1, -1], [-1, 0], [-1, 1], [-1, 2],
-                                          [0, -1], [0, 2],
-                                          [1, -1], [1, 2],
-                                          [2, -1], [2, 0], [2, 1], [2, 2]] }
+    let(:two_by_two_sqaure_neighbours) {
+                                          [[-1, -1], [-1, 0], [-1, 1], [-1, 2],
+                                           [0, -1], [0, 2],
+                                           [1, -1], [1, 2],
+                                           [2, -1], [2, 0], [2, 1], [2, 2]]
+                                        }
 
     it 'a live cell dies if less than two of its neighbours are live' do
       sparse_game = Game.new([live_cell],
@@ -38,14 +42,15 @@ describe 'Game' do
 
   context 'generated_dead_cells' do
     let(:dead_cell) { [1, 1] }
-    let(:dead_cell_neighbours) { [[0, 0], [0, 1], [0, 2],
-                                  [1, 0], [1, 2],
-                                  [2, 0], [2, 1], [2, 2]] }
-
+    let(:dead_cell_neighbours) {
+                                  [[0, 0], [0, 1], [0, 2],
+                                   [1, 0], [1, 2],
+                                   [2, 0], [2, 1], [2, 2]]
+                                }
 
     it 'a dead cell becomes alive if three of its neighbours are live' do
       game = Game.new(*[dead_cell_neighbours[0..2]],
-                       [dead_cell])
+                      [dead_cell])
       expect(game.live_cells_for_next_tick).to include dead_cell
     end
 
@@ -57,7 +62,7 @@ describe 'Game' do
 
     it 'a dead cell stays dead if more than three of its neighbours are live' do
       game = Game.new(*[dead_cell_neighbours[0..3]],
-                       [dead_cell])
+                      [dead_cell])
       expect(game.live_cells_for_next_tick).not_to include dead_cell
     end
   end

@@ -15,6 +15,3 @@ class Grid
     live_cell_neighbours.uniq.reject { |cell| @live_cells.include?(cell) }.sort
   end
 end
-#game = Game.new([[0, 0], [1, 0], [2, 0]],
-# grid = Grid.new([[1, 1], [0, 0], [0, 1], [0,2], [1, 0]])
-# p grid.dead_neighbours_of_living_cells
