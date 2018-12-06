@@ -11,15 +11,9 @@ class Game
   end
 
   def live_cells_for_next_tick
+    surviving_live_cells = return_live_cells(@live_cells)
+    generated_dead_cells = return_live_cells(@dead_cells, alive_now = false)
     (surviving_live_cells + generated_dead_cells).sort
-  end
-
-  def surviving_live_cells
-    return_live_cells(@live_cells)
-  end
-
-  def generated_dead_cells
-    return_live_cells(@dead_cells, alive_now = false)
   end
 
   def return_live_cells(cell_array, alive_now = true)
