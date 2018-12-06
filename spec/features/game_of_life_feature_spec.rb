@@ -7,8 +7,8 @@ describe 'game of life' do
   end
 
   it 'calculates the next tick for an empty starting grid' do
-      game = prepare_game([])
-      expect(game.live_cells_for_next_tick).to eq []
+    game = prepare_game([])
+    expect(game.live_cells_for_next_tick).to eq []
   end
 
   it 'calculates the next tick for a stable grid' do

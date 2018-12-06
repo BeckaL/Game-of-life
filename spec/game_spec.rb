@@ -26,11 +26,12 @@ describe 'Game' do
 
     it 'a game is stable if a two-by-two square exists' do
       stable_game = Game.new([[0, 0], [0, 1], [1, 0], [1, 1]],
-                              [[-1, -1], [-1, 0], [-1, 1], [-1, 2],
-                               [0, -1], [0, 2],
-                               [1, -1], [1, 2],
-                               [2, -1], [2, 0], [2, 1], [2, 2]])
-      expect(stable_game.surviving_live_cells).to eq [[0, 0], [0, 1], [1, 0], [1, 1]]
+                             [[-1, -1], [-1, 0], [-1, 1], [-1, 2],
+                              [0, -1], [0, 2],
+                              [1, -1], [1, 2],
+                              [2, -1], [2, 0], [2, 1], [2, 2]])
+      expect(stable_game.surviving_live_cells).to eq [[0, 0], [0, 1],
+                                                      [1, 0], [1, 1]]
     end
   end
 

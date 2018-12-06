@@ -8,9 +8,8 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 end
 
-
 def prepare_game(live_cells)
   grid = Grid.new(live_cells)
   dead_neighbours = grid.dead_neighbours_of_living_cells
-  return Game.new(grid.live_cells, dead_neighbours)
+  Game.new(grid.live_cells, dead_neighbours)
 end
