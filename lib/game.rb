@@ -10,6 +10,10 @@ class Game
     @dead_cells = dead_cells
   end
 
+  def live_cells_for_next_tick
+    (surviving_live_cells + generated_dead_cells).sort
+  end
+
   def surviving_live_cells
     return_live_cells(@live_cells)
   end
@@ -29,7 +33,7 @@ class Game
 
   def generation_or_survival_rule(cell, alive_neighbours, alive_now)
     if alive_now
-      cell if (MIN_SURV_THRESH...MAX_SURV_THRESH).cover?(alive_neighbours)
+      cell if (MIN_SURV_THRESH..MAX_SURV_THRESH).cover?(alive_neighbours)
     else
       cell if GENERATION_THRESH == alive_neighbours
     end

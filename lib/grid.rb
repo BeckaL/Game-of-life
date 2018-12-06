@@ -16,5 +16,5 @@ class Grid
   end
 end
 #
-# grid = Grid.new([[0,0], [0,1], [0,2], [1,0]])
-# p grid.dead_neighbours
+# grid = Grid.new([[0, 0], [0, 1], [1, 0], [1, 1]])
+# p grid.dead_neighbours_of_living_cells

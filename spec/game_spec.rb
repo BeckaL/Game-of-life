@@ -23,6 +23,15 @@ describe 'Game' do
                             [2, -1], [2, 0], [2, 1], [2, 2], [2, 3]])
       expect(busy_game.surviving_live_cells).not_to include [1, 1]
     end
+
+    it 'a game is stable if a two-by-two square exists' do
+      stable_game = Game.new([[0, 0], [0, 1], [1, 0], [1, 1]],
+                              [[-1, -1], [-1, 0], [-1, 1], [-1, 2],
+                               [0, -1], [0, 2],
+                               [1, -1], [1, 2],
+                               [2, -1], [2, 0], [2, 1], [2, 2]])
+      expect(stable_game.surviving_live_cells).to eq [[0, 0], [0, 1], [1, 0], [1, 1]]
+    end
   end
 
   describe '#generated_dead_cells' do
