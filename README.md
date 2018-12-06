@@ -1,6 +1,8 @@
-## Game of life
+# Game of life
 
 This is a ruby programme written to simulate the [Conway's game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). Given a starting point of a grid of live cells, it calculates the state of the grid at the next 'tick'. This state is given as the array of live cells which are alive at the next tick.
+
+The board available is theoretically infinite, as cells are given by their x and y coordinates, which can be positive or negative.
 
 ## Working on or running the code
 

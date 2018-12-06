@@ -1,3 +1,5 @@
+require_relative 'neighbours_module'
+
 class Grid
   attr_reader :live_cells
 
@@ -5,20 +7,14 @@ class Grid
     @live_cells = live_cells
   end
 
-  def dead_neighbours
-    dead_cells = []
+  def dead_neighbours_of_living_cells
+    live_cell_neighbours = []
     @live_cells.each do |cell|
-      movements.each do |movement|
-        dead_cells << movement.zip(cell).map { |x, y| x + y }
-      end
+      live_cell_neighbours += Neighbours.find_neighbours(cell)
     end
-    dead_cells.uniq.select { |cell| !@live_cells.include?(cell) }.sort
+    live_cell_neighbours.uniq.reject { |cell| @live_cells.include?(cell) }.sort
   end
-
-  private
-  def movements
-    [[-1,-1], [-1, 0], [-1, 1], [0, -1],
-    [0, 1], [1, -1], [1, 0], [1, 1]]
-  end
-
 end
+#
+# grid = Grid.new([[0,0], [0,1], [0,2], [1,0]])
+# p grid.dead_neighbours

@@ -1,7 +1,5 @@
 require_relative 'neighbours_module'
-
 class Game
-
   TOTAL_NEIGHBOURS = 8
   MIN_SURV_THRESH = 2
   MAX_SURV_THRESH = 3
@@ -21,19 +19,19 @@ class Game
   end
 
   def return_live_cells(cell_array, alive_now = true)
-    return cell_array.select do |cell|
+    cell_array.select do |cell|
       alive_neighbours = (Neighbours.find_neighbours(cell) & @live_cells).length
       generation_or_survival_rule(cell, alive_neighbours, alive_now)
     end
   end
 
   private
+
   def generation_or_survival_rule(cell, alive_neighbours, alive_now)
     if alive_now
-      cell if (MIN_SURV_THRESH...MAX_SURV_THRESH).include?(alive_neighbours)
+      cell if (MIN_SURV_THRESH...MAX_SURV_THRESH).cover?(alive_neighbours)
     else
       cell if GENERATION_THRESH == alive_neighbours
     end
   end
-
 end
